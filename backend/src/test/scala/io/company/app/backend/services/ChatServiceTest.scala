@@ -5,7 +5,8 @@ import io.company.app.shared.rpc.client.MainClientRPC
 import io.company.app.shared.rpc.client.chat.ChatNotificationsRPC
 import io.udash.rpc.ClientId
 import org.scalamock.scalatest.AsyncMockFactory
-import org.scalatest.{AsyncWordSpec, Matchers}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AsyncWordSpec
 
 class ChatServiceTest extends AsyncWordSpec with Matchers with AsyncMockFactory {
   "ChatService" should {

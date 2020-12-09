@@ -1,7 +1,6 @@
 package io.company.app.frontend.views.chat
 
 import java.util.Date
-
 import io.company.app.frontend.routing.ChatState
 import io.company.app.frontend.services.UserContextService
 import io.company.app.frontend.services.rpc.NotificationsCenter
@@ -12,7 +11,8 @@ import io.company.app.shared.rpc.server.secure.chat.ChatRPC
 import io.udash.properties.model.ModelProperty
 import io.udash.utils.Registration
 import org.scalamock.scalatest.AsyncMockFactory
-import org.scalatest.{AsyncWordSpec, Matchers}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AsyncWordSpec
 
 import scala.concurrent.Future
 

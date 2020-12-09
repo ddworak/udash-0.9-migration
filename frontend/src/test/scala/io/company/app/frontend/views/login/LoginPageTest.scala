@@ -9,11 +9,13 @@ import io.udash.Application
 import io.udash.i18n.TranslationKey
 import io.udash.properties.model.ModelProperty
 import org.scalamock.scalatest.AsyncMockFactory
-import org.scalatest.{AsyncWordSpec, Matchers}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AsyncWordSpec
 
 import scala.concurrent.Future
 
 class LoginPageTest extends AsyncWordSpec with Matchers with AsyncMockFactory {
+
   private class MockableApplication extends Application[RoutingState](null, null, null)
 
   "LoginPage" should {

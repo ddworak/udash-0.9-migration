@@ -5,9 +5,10 @@ import io.company.app.shared.rpc.client.MainClientRPC
 import io.company.app.shared.rpc.client.chat.ChatNotificationsRPC
 import io.udash.rpc.{ClientId, ClientRPCTarget}
 import org.scalamock.scalatest.MockFactory
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class RpcClientsServiceTest extends WordSpec with Matchers with MockFactory {
+class RpcClientsServiceTest extends AnyWordSpec with Matchers with MockFactory {
   "RpcClientsService" should {
     "return active and authenticated clients ids" in {
       val chatNotificationsRpc = mock[ChatNotificationsRPC]

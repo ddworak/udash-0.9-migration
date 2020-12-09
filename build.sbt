@@ -1,8 +1,10 @@
-import org.scalajs.jsenv.selenium.SeleniumJSEnv
 import org.openqa.selenium.Capabilities
 import org.openqa.selenium.chrome.ChromeOptions
+import org.scalajs.jsenv.selenium.SeleniumJSEnv
+import sbt.Keys._
+import sbt._
 
-Global / cancelable := true
+Global / excludeLintKeys ++= Set(ideBasePackages, ideOutputDirectory, ideSkipProject)
 
 name := "my-udash-application"
 
@@ -67,11 +69,9 @@ val commonSettings = noPublishSettings ++ Seq(
 
 // Reusable settings for modules compiled to JS
 val commonJsSettings = commonSettings ++ Seq(
-  Compile / emitSourceMaps := true,
   Test / parallelExecution := false,
   Test / fork := false,
   Test / jsEnv := new SeleniumJSEnv(browserCapabilities),
-  scalacOptions += "-P:scalajs:sjsDefinedByDefault",
 )
 
 def sourceDirsSettings(baseMapper: File => File): Seq[Def.Setting[Seq[File]]] = {
@@ -111,7 +111,7 @@ def jvmProject(proj: Project): Project = {
 
 def jsProjectFor(jvmProj: Project, jsProj: Project): Project = {
   jsProj.in(jvmProj.base / "js")
-    .enablePlugins(ScalaJSPlugin)
+    .enablePlugins(ScalaJSPlugin, JSDependenciesPlugin)
     .configure(p => if (forIdeaImport) p.dependsOn(jvmProj) else p)
     .settings(
       commonJsSettings,
@@ -137,7 +137,7 @@ lazy val `shared-js` = jsProjectFor(shared, project)
 
 val frontendWebContent = "UdashStatics/WebContent"
 lazy val frontend = project.in(file("frontend"))
-  .enablePlugins(ScalaJSPlugin) // enables Scala.js plugin in this module
+  .enablePlugins(ScalaJSPlugin, JSDependenciesPlugin) // enables Scala.js plugin in this module
   .dependsOn(`shared-js` % TestAndCompileDep)
   .settings(
     commonJsSettings,

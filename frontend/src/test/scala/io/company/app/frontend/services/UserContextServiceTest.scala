@@ -6,7 +6,8 @@ import org.scalamock.scalatest.AsyncMockFactory
 import io.company.app.shared.rpc.server.MainServerRPC
 import io.company.app.shared.rpc.server.open.AuthRPC
 import io.company.app.shared.rpc.server.secure.SecureRPC
-import org.scalatest.{AsyncWordSpec, Matchers}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AsyncWordSpec
 
 import scala.concurrent.Future
 
